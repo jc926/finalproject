@@ -4,6 +4,10 @@ abstract class model {
 
     public function save()
     {
+        $modelName=static::$modelName;
+        $tableName = $modelName::getTablename();
+        $array = get_object_vars($this);
+
         if ($this->id != '') {
             $sql = $this->update();
         } else {
@@ -36,9 +40,7 @@ abstract class model {
     }
     private function insert() {
 
-        $modelName=static::$modelName;
-        $tableName = $modelName::getTablename();
-        $array = get_object_vars($this);
+
         unset($array['id']);
         print_r($array);
 	    $columnString = implode(',', array_flip($array));
@@ -49,11 +51,7 @@ abstract class model {
     }
 
     private function update() {
-
-        $modelName=static::$modelName;
-        $tableName = $modelName::getTablename();
-        $array = get_object_vars($this);
-
+        
         $comma = " ";
         $sql = 'UPDATE '.$tableName.' SET ';
         foreach ($array as $key=>$value){
