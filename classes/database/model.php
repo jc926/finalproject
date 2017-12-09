@@ -7,6 +7,12 @@ abstract class model {
         $modelName=static::$modelName;
         $tableName = $modelName::getTablename();
         $array = get_object_vars($this);
+        foreach ($array as $key =>$value){
+            if (empty($value)){
+                $array[$key] ='NULL';
+
+            }
+        }
 
         if ($this->id != '') {
             $sql = $this->update();
@@ -41,8 +47,8 @@ abstract class model {
     private function insert() {
 
 
-        unset($array['id']);
-        print_r($array);
+        //unset($array['id']);
+       // print_r($array);
 	    $columnString = implode(',', array_flip($array));
 	    echo '</br>' . $columnString . '</br>';
         $valueString = ':'.implode(',:', array_flip($array));
