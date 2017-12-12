@@ -13,7 +13,9 @@ abstract class model
             echo 'failed validation';
             exit;
         }
-
+        $modelName = static::$modelName;
+        $tableName = $modelName::getTablename();
+        $array = get_object_vars($this);
 
         if ($this->id != '') {
             $sql = $this->update();
@@ -23,7 +25,7 @@ abstract class model
         }
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
-        $array = get_object_vars($this);
+
 
         if ($INSERT == TRUE) {
 
@@ -50,9 +52,7 @@ abstract class model
     private function insert()
     {
 
-        $modelName = static::$modelName;
-        $tableName = $modelName::getTablename();
-        $array = get_object_vars($this);
+
         unset($array['id']);
         $columnString = implode(',', array_flip($array));
         $valueString = ':' . implode(',:', array_flip($array));
@@ -68,9 +68,7 @@ abstract class model
     private function update()
     {
 
-        $modelName = static::$modelName;
-        $tableName = $modelName::getTablename();
-        $array = get_object_vars($this);
+
 
         $comma = " ";
         $sql = 'UPDATE ' . $tableName . ' SET ';

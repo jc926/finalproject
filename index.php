@@ -3,7 +3,8 @@
 //turn on debugging messages
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
-
+session_start();
+print_r($_SESSION);
 //Autoloader class to load all the different directories
 
 include_once "autoload.php";
