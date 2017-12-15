@@ -169,11 +169,14 @@ class route
     public $method;
     public $controller;
 
-    public function __construct($http_method,$action,$page,$controller,$method) {
+    public function __construct($http_method,$action,$page,$controller,$method)
+    {
 
         $this->http_method = $http_method;
         $this->action = $action;
         $this->page = $page;
         $this->controller = $controller;
         $this->method = $method;
+    }
 }
+?>
