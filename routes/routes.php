@@ -16,7 +16,7 @@ class routes
         //You should improve this function by making functions to create routes in a factory. I will look for this when grading
 
         //I also use object for the route because it has data and it's easier to access.
-        $route = new route();
+        $routes = new routes();
 /*        //this is the index.php route for GET
         //Specify the request method
         $route->http_method = 'GET';
