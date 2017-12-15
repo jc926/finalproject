@@ -15,8 +15,7 @@ class accountsController extends http\controller
     //to call the show function the url is index.php?page=task&action=show
     public static function show()
     {
-        $record = accounts::findOne($_REQUEST['id']);
-        self::getTemplate('show_account', $record);
+        header("Location: index.php");
     }
 
     //to call the show function the url is index.php?page=accounts&action=all
@@ -38,7 +37,19 @@ class accountsController extends http\controller
     {
         //https://www.sitepoint.com/why-you-should-use-bcrypt-to-hash-stored-passwords/
         //USE THE ABOVE TO SEE HOW TO USE Bcrypt
-        self::getTemplate('register');
+        $label = array ("Username", "Password", "First Name", "Last Name", "Gender", "Birthday", "Phone Number", "Email Address");
+        $type = array ("text", "password", "text", "text", "text", "date", "number", "email");
+        $name = array ("username", "password", "fname", "lname", "gender", "birthday", "phone", "email");
+        $string = $label;
+        $record = new account();
+
+        foreach ($name as $key => $value) {
+            $recvalue = $record->$value;
+            $string[$key] .= " <input type = \"$type[$key]\" value = \"$recvalue\" name = \"$name[$key]\"> ";
+        }
+        self::getTemplate('register', $string);
+
+
     }
 
     //this is the function to save the user the new user for registration

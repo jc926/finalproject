@@ -19,8 +19,15 @@ class homepageController extends http\controller
 //If there is a session then you should show the user profile link
 //the template is an HTML page with PHP inserted in it.  just put an if/else statement to check for the session and show correct links
 
+        if(isset($_GET["submit"]) == "UnLog") {
+            $_SESSION["UserID"] = NULL;
+            header('Location: index.php');
+        }
 
-        $templateData['site_name'] = 'mysite';
+        $templateData[] = http\request::getCookie("Username");
+        $templateData["!issetSessionUserID"] = http\request::ExcalmationUserIDSession();
+        $templateData["issetSessionUserID"] = http\request::UserIDSession();
+        $templateData["UserID"] = http\request::getSessionUserID();
 
 //template data contains what will show up in the $data variable in the homepage template
 //the name of the template 'homepage' becomes 'homepage.php' in the pages directory
