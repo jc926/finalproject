@@ -1,6 +1,6 @@
 <?php
 
-class accounts extends \database\collection
+class accounts extends \database\collections
 {
     protected static $modelName = 'account';
 

@@ -7,8 +7,37 @@
  */
 
 class routes
-{
+{   protected $routes;
+    public function __construct() {
+        //create($http_method, $action, $page, $controller, $method)
+        $this->routes[] = routes::create('GET','show','homepage','homepageController','show');
+        $this->routes[] = routes::create('POST','create','homepage','homepageController','create');
+        $this->routes[] = routes::create('GET','all','accounts','accountsController','all');
+        $this->routes[] = routes::create('GET','show','accounts','accountsController','show');
+        $this->routes[] = routes::create('GET','edit','accounts','accountsController','edit');
+        $this->routes[] = routes::create('GET','register','accounts','accountsController','register');
+        $this->routes[] = routes::create('POST','login','accounts','accountsController','login');
+        $this->routes[] = routes::create('POST','save','accounts','accountsController','save');
+        $this->routes[] = routes::create('POST','delete','accounts','accountsController','delete');
+        $this->routes[] = routes::create('POST','register','accounts','accountsController','store');
+        $this->routes[] = routes::create('GET','show','tasks','tasksController','show');
+        $this->routes[] = routes::create('GET','all','tasks','tasksController','all');
+        $this->routes[] = routes::create('GET','edit','tasks','tasksController','edit');
+        $this->routes[] = routes::create('GET','create','tasks','tasksController','create');
+        $this->routes[] = routes::create('POST','edit','tasks','tasksController','save');
+        $this->routes[] = routes::create('POST','create','tasks','tasksController','store');
+        $this->routes[] = routes::create('POST','delete','tasks','tasksController','delete');
+    }
 
+    public static function create($http_method,$action,$page,$controller,$method) {
+        $route = new route();
+        $route->http_method = $http_method;
+        $route->action = $action;
+        $route->page = $page;
+        $route->controller = $controller;
+        $route->method = $method;
+        return new route();
+    }
     public static function getRoutes()
     {
         //bellow adds routes to your program, routes match the URL and request method with the controller and method.
@@ -149,40 +178,15 @@ class routes
 
         return $routes;
     }
-    public function __construct() {
-        //create($http_method, $action, $page, $controller, $method)
-        $this->routes[] = routes::create('GET','show','homepage','homepageController','show');
-        $this->routes[] = routes::create('POST','create','homepage','homepageController','create');
-        $this->routes[] = routes::create('GET','all','accounts','accountsController','all');
-        $this->routes[] = routes::create('GET','show','accounts','accountsController','show');
-        $this->routes[] = routes::create('GET','edit','accounts','accountsController','edit');
-        $this->routes[] = routes::create('GET','register','accounts','accountsController','register');
-        $this->routes[] = routes::create('POST','login','accounts','accountsController','login');
-        $this->routes[] = routes::create('POST','save','accounts','accountsController','save');
-        $this->routes[] = routes::create('POST','delete','accounts','accountsController','delete');
-        $this->routes[] = routes::create('POST','register','accounts','accountsController','store');
-        $this->routes[] = routes::create('GET','show','tasks','tasksController','show');
-        $this->routes[] = routes::create('GET','all','tasks','tasksController','all');
-        $this->routes[] = routes::create('GET','edit','tasks','tasksController','edit');
-        $this->routes[] = routes::create('GET','create','tasks','tasksController','create');
-        $this->routes[] = routes::create('POST','edit','tasks','tasksController','save');
-        $this->routes[] = routes::create('POST','create','tasks','tasksController','store');
-        $this->routes[] = routes::create('POST','delete','tasks','tasksController','delete');
-    }
-    public static function create($http_method,$action,$page,$controller,$method) {
-        $route = new route();
-        $route->http_method = $http_method;
-        $route->action = $action;
-        $route->page = $page;
-        $route->controller = $controller;
-        $route->method = $method;
-    }
+
+
 }
 
 //this is the route prototype object  you would make a factory to return this
 
 class route
 {
+    public $http_method;
     public $page;
     public $action;
     public $method;
