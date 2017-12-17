@@ -8,7 +8,7 @@
 
 class routes
 {   protected $routes;
-    public function __construct() {
+   /* public function __construct() {
         //create($http_method, $action, $page, $controller, $method)
         $this->routes[] = routes::create('GET','show','homepage','homepageController','show');
         $this->routes[] = routes::create('POST','create','homepage','homepageController','create');
@@ -27,7 +27,7 @@ class routes
         $this->routes[] = routes::create('POST','edit','tasks','tasksController','save');
         $this->routes[] = routes::create('POST','create','tasks','tasksController','store');
         $this->routes[] = routes::create('POST','delete','tasks','tasksController','delete');
-    }
+    }*/
 
     public static function create($http_method,$action,$page,$controller,$method) {
         $route = new route();
