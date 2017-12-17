@@ -21,9 +21,9 @@ class processRequest
         //this print r shows the requested route
         //print_r($requested_route);
         //This is an important function to look at, it determines which controller to use
-        $controller_name = $requested_route->controller;
+        //$controller_name = $requested_route->controller;
         //this determines the method to call for the controller
-        $controller_method = $requested_route->method;
+       // $controller_method = $requested_route->method;
 
         //these echo helps figure out the controller name and method
         // echo $controller_name . '</br>';
@@ -31,10 +31,20 @@ class processRequest
 
 
         //I use a static for the controller because it doesn't have any properties
-        $controller_name::$controller_method();
+        //$controller_name::$controller_method();
+        self::Create($requested_route);
 
     }
+    private static function Create($requested_route) {
 
+        $controller_name = $requested_route->controller;
+        $controller_method = $requested_route->method;
+        self::Response($controller_name, $controller_method);
+    }
+    private static function Response($controller_name, $controller_method) {
+
+        $controller_name::$controller_method();
+    }
     //this function matches the request to the correct controller
     public static function getRequestedRoute()
     {
@@ -68,4 +78,6 @@ class processRequest
             return $foundRoute;
         }
     }
+
+
 }

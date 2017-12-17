@@ -78,6 +78,8 @@ class tasksController extends http\controller
         $record->save();
         print_r($_POST);
 
+        $bool = todos::Createtask();
+        if($bool) header("Location: index.php?page=tasks&action=show");
     }
 
     public static function save() {
@@ -88,6 +90,8 @@ class tasksController extends http\controller
         $task->ownerid = $_SESSION['userID'];
         $task->save();
 
+        $bool = todos::Edittask();
+        if($bool) header("Location: index.php?page=tasks&action=show");
     }
 
     //this is the delete function.  You actually return the edit form and then there should be 2 forms on that.
