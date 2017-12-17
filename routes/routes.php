@@ -8,8 +8,8 @@
 
 class routes
 {   protected $routes;
-   /* public function __construct() {
-        //create($http_method, $action, $page, $controller, $method)
+    public function __construct() {
+
         $this->routes[] = routes::create('GET','show','homepage','homepageController','show');
         $this->routes[] = routes::create('POST','create','homepage','homepageController','create');
         $this->routes[] = routes::create('GET','all','accounts','accountsController','all');
@@ -27,15 +27,16 @@ class routes
         $this->routes[] = routes::create('POST','edit','tasks','tasksController','save');
         $this->routes[] = routes::create('POST','create','tasks','tasksController','store');
         $this->routes[] = routes::create('POST','delete','tasks','tasksController','delete');
-    }*/
+    }
 
     public static function create($http_method,$action,$page,$controller,$method) {
-        $route = new route();
+  /*      $route = new route();
         $route->http_method = $http_method;
         $route->action = $action;
         $route->page = $page;
         $route->controller = $controller;
         $route->method = $method;
+*/
         return new route();
     }
     public static function getRoutes()
@@ -48,7 +49,7 @@ class routes
         $routes = new routes();
        //this is the index.php route for GET
         //Specify the request method
-        $routes->http_method = 'GET';
+     /*   $routes->http_method = 'GET';
         //specify the page.  index.php?page=index.  (controller name / method called
         $routes->page = 'homepage';
         //specify the action that is in the URL to trigger this route index.php?page=index&action=show
@@ -174,7 +175,7 @@ class routes
         $route->controller = 'accountsController';
         $route->method = 'store';
         $routes[] = $route;
-
+     */
         return $routes;
     }
 
