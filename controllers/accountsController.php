@@ -92,9 +92,18 @@ class accountsController extends http\controller
 
     public static function edit()
     {
-        $record = accounts::findOne($_REQUEST['id']);
+        $label = array ("Username", "Password", "First Name", "Last Name", "Gender", "Birthday", "Phone Number", "Email Address");
+        $type = array ("text", "password", "text", "text", "text", "date", "number", "email");
+        $name = array ("username", "password", "fname", "lname", "gender", "birthday", "phone", "email");
+        $string = $label;
+        $record = accounts::ShowData($_SESSION["UserID"]);
+        $record[0]->password = "";
 
-        self::getTemplate('edit_account', $record);
+        foreach ($name as $key => $value) {
+            $valuerecord = $record[0]->$value;
+            $string[$key] .= " <input type = \"$type[$key]\" value = \"$valuerecord\" name = \"$name[$key]\"> ";
+        }
+        self::getTemplate('edit_account', $string);
 
     }
 //this is used to save the update form data

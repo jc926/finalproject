@@ -44,7 +44,19 @@ class tasksController extends http\controller
 
     public static function create()
     {
-        print_r($_POST);
+        $label = array ("Owneremail", "Ownerid", "Createddate", "Duedate", "Message", "Isdone");
+        $type = array ("email", "number", "date", "date", "text", "text", "number");
+        $name = array ("Owneremail", "Ownerid", "Createddate", "Duedate", "Message", "Isdone");
+        $string = $label;
+        $record = new todo();
+
+
+        foreach ($name as $key => $value) {
+            $valuerecord = $record->$value;
+            $string[$key] .= " <input type = \"$type[$key]\" value = \"$valuerecord\" name = \"$name[$key]\"> ";
+        }
+        self::getTemplate('create_task', $string);
+
     }
 
     //this is the function to view edit record form

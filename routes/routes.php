@@ -46,17 +46,17 @@ class routes
 
         //I also use object for the route because it has data and it's easier to access.
         $routes = new routes();
-/*        //this is the index.php route for GET
+       //this is the index.php route for GET
         //Specify the request method
-        $route->http_method = 'GET';
+        $routes->http_method = 'GET';
         //specify the page.  index.php?page=index.  (controller name / method called
-        $route->page = 'homepage';
+        $routes->page = 'homepage';
         //specify the action that is in the URL to trigger this route index.php?page=index&action=show
-        $route->action = 'show';
+        $routes->action = 'show';
         //specify the name of the controller class that will contain the functions that deal with the requests
-        $route->controller = 'homepageController';
+        $routes->controller = 'homepageController';
         //specify the name of the method that is called, the method should be the same as the action
-        $route->method = 'show';
+        $routes->method = 'show';
         //this adds the route to the routes array.
         $routes[] = $route;
 
@@ -174,7 +174,6 @@ class routes
         $route->controller = 'accountsController';
         $route->method = 'store';
         $routes[] = $route;
-*/
 
         return $routes;
     }
