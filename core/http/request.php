@@ -46,4 +46,8 @@ class request
         }
         return $action;
     }
+    static public function getSession($var) {
+        $val = (isset($_SESSION[$var])) ? $_SESSION[$var] : '';
+        return $val;
+    }
 }
